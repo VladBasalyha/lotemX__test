@@ -11,21 +11,33 @@ import {
 	TextField,
 } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+
+import tablecell from "../tablecell.json";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 
 import users from "../users.json";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const TableOfUsers = (e) => {
+	const [usersList, setUsersList] = useState([]);
 	const [searchInput, setSearchValue] = useState("");
+	const [isCheckboxChecked, setCheckboxValue] = useState(false);
 
 	const getVisibleUsers = () => {
-		return users.filter((user) => user.name.includes(searchInput));
+		return usersList.filter((user) => user.name.includes(searchInput));
 	};
 	const onSearchInput = (e) => {
 		setSearchValue(e.target.value);
 	};
-
+	const onCheckboxChange = (e) =>
+		usersList.forEach((user) => {
+			if (e.target.name === Number(user.id)) {
+			}
+			console.log(e.target);
+		});
+	useEffect(() => {
+		setUsersList(users);
+	}, []);
 	return (
 		<>
 			<Container>
@@ -37,34 +49,34 @@ export const TableOfUsers = (e) => {
 					<Table>
 						<TableHead style={{ backgroundColor: "grey" }}>
 							<TableRow>
-								<TableCell>Username</TableCell>
-								<TableCell>View</TableCell>
-								<TableCell>Execute</TableCell>
-								<TableCell>Modify</TableCell>
-								<TableCell>Delete</TableCell>
-								<TableCell></TableCell>
+								{tablecell.map((param) => (
+									<TableCell key={param}>{param}</TableCell>
+								))}
 							</TableRow>
 						</TableHead>
 						<TableBody>
 							{getVisibleUsers().map((user) => {
 								return (
 									<TableRow key={user.id}>
-										<TableCell>{user.name}</TableCell>
+										<TableCell key={user.id}>{user.name}</TableCell>
 										<TableCell>
-											<Checkbox></Checkbox>
+											<Checkbox
+												checked={isCheckboxChecked}
+												onClick={onCheckboxChange}
+											></Checkbox>
 										</TableCell>
 										<TableCell>
-											<Checkbox></Checkbox>
+											<Checkbox checked={isCheckboxChecked}></Checkbox>
 										</TableCell>
 										<TableCell>
-											<Checkbox></Checkbox>
+											<Checkbox checked={isCheckboxChecked}></Checkbox>
 										</TableCell>
 										<TableCell>
-											<Checkbox></Checkbox>
+											<Checkbox checked={isCheckboxChecked}></Checkbox>
 										</TableCell>
 										<TableCell>
-											<Button>
-												<MoreHorizIcon color="black"></MoreHorizIcon>
+											<Button data-id={`${user.id}`}>
+												<MoreHorizIcon></MoreHorizIcon>
 											</Button>
 										</TableCell>
 									</TableRow>
@@ -75,6 +87,7 @@ export const TableOfUsers = (e) => {
 					<Button
 						style={{
 							background: "black",
+							margin: "20px",
 							paddingRight: "40px",
 							paddingLeft: "40px",
 						}}
