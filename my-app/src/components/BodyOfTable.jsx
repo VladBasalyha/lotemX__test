@@ -1,14 +1,9 @@
 import {
-	TableContainer,
-	Table,
-	TableHead,
 	TableRow,
 	TableCell,
-	Container,
 	TableBody,
 	Checkbox,
 	Button,
-	TextField,
 } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 export const BodyOfTable = ({ visibleUsers }) => {

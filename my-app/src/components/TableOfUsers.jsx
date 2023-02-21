@@ -1,41 +1,42 @@
 import {
 	TableContainer,
 	Table,
-	TableHead,
-	TableRow,
-	TableCell,
 	Container,
-	TableBody,
-	Checkbox,
 	Button,
 	TextField,
 } from "@mui/material";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
-import tablecell from "../tablecell.json";
-import SearchSharpIcon from "@mui/icons-material/SearchSharp";
-
-import users from "../users.json";
 import { useEffect, useState } from "react";
 import { HeaderOfTable } from "./HeaderOfTable";
 import { BodyOfTable } from "./BodyOfTable";
 
+// import data for cells of table and info about users
+import tablecell from "../tablecell.json";
+import users from "../users.json";
+
 export const TableOfUsers = (e) => {
 	const [usersList, setUsersList] = useState([]);
 	const [searchInput, setSearchValue] = useState("");
-	const [isCheckboxChecked, setCheckboxValue] = useState(false);
 
+	// on mounting of our element we set list of user
+	// which is imported from json file
+	useEffect(() => {
+		setUsersList(users);
+	}, []);
+
+	// get value for searching users by filtering of state where
+	// we keep list of our users
 	const getVisibleUsers = usersList.filter((user) =>
 		user.name.includes(searchInput)
 	);
 
+	// we have contolled element, so we set value
+	// which depends on what we write in input
 	const onSearchInput = (e) => {
-		setSearchValue(e.target.value);
+		const { value } = e.target;
+		setSearchValue(value);
 	};
 
-	useEffect(() => {
-		setUsersList(users);
-	}, []);
 	return (
 		<>
 			<Container>
@@ -51,17 +52,19 @@ export const TableOfUsers = (e) => {
 						flexWrap: "wrap",
 					}}
 				>
-					<h1>
+					<h2>
 						Users <span>{users.length}</span>{" "}
-					</h1>
+					</h2>
 					<TextField onChange={onSearchInput} value={searchInput}></TextField>
 				</Container>
 				<TableContainer>
-					{/* main elements of our table  */}
 					<Table>
+						{/* main elements of our table, it`s complected from
+                different components  */}
 						<HeaderOfTable tableheader={tablecell}></HeaderOfTable>
 						<BodyOfTable visibleUsers={getVisibleUsers}></BodyOfTable>
 					</Table>
+
 					<Button
 						style={{
 							background: "black",
