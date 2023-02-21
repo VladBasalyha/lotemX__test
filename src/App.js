@@ -6,6 +6,7 @@ function App() {
 	return (
 		<>
 			<Container>
+				<h1>Permissions</h1>
 				<p>Create and customise rules for your interface</p>
 				<TableOfUsers></TableOfUsers>
 			</Container>
