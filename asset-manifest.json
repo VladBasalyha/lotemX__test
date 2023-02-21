@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/lotemX__test/static/css/main.073c9b0a.css",
+    "main.js": "/lotemX__test/static/js/main.fb13b751.js",
+    "static/js/787.7efd31bd.chunk.js": "/lotemX__test/static/js/787.7efd31bd.chunk.js",
+    "index.html": "/lotemX__test/index.html",
+    "main.073c9b0a.css.map": "/lotemX__test/static/css/main.073c9b0a.css.map",
+    "main.fb13b751.js.map": "/lotemX__test/static/js/main.fb13b751.js.map",
+    "787.7efd31bd.chunk.js.map": "/lotemX__test/static/js/787.7efd31bd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.fb13b751.js"
+  ]
+}
